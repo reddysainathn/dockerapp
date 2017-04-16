@@ -11,8 +11,6 @@ dependencies:
 
 test:
   override:
-    - docker rm -f $(docker ps -a -q)
-    - docker rmi -f $(docker images -q)
     - docker-compose up -d
     - docker-compose run dockerapp python test.py
 
@@ -21,7 +19,7 @@ deployment:
       branch: [circle_ci,master,circle_ci_publish]
       commands: 
         - docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-        - docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
-        - docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:latest
+        - docker tag dockerapp_dockerapp_1 $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
+        - docker tag dockerapp_dockerapp_1 $DOCKER_HUB_USER_ID/dockerapp:latest
         - docker push $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
         - docker push $DOCKER_HUB_USER_ID/dockerapp:latest
