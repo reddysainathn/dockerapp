@@ -1,4 +1,0 @@
-# dockerDemoLearning
-
-
-WOW!
