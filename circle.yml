@@ -16,7 +16,7 @@ test:
 
 deployment:
   hub:
-    branch: [circle_ci_publish, master,circle_ci]
+    branch: /.*/
     commands:
       - pwd
       - docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
