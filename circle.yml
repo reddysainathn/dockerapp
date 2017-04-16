@@ -15,11 +15,11 @@ test:
     - docker-compose run dockerapp python test.py
 
 deployment:
-    hub:
-      branch: [circle_ci,master,circle_ci_publish]
-      commands: 
-        - docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-        - docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
-        - docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:latest
-        - docker push $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
-        - docker push $DOCKER_HUB_USER_ID/dockerapp:latest
+  hub:
+    branch: [circle_ci_publish, master,circle_ci]
+    commands:
+      - docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+      - docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
+      - docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:latest
+      - docker push $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
+      - docker push $DOCKER_HUB_USER_ID/dockerapp:latest
